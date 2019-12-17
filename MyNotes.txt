@@ -1,0 +1,13 @@
+
+linq:
+
+https://weblogs.asp.net/scottgu/linq-to-sql-part-3-querying-our-database
+
+https://weblogs.asp.net/scottgu/linq-to-sql-part-6-retrieving-data-using-stored-procedures
+
+https://docs.microsoft.com/en-us/sql/relational-databases/stored-procedures/create-a-stored-procedure?view=sql-server-ver15
+
+
+errors:
+1.
+System.InvalidCastException: 'Unable to cast object of type 'System.Data.Entity.Infrastructure.DbQuery`1[CollegeAdministration.Models.Student]' to type 'CollegeAdministration.Models.Student'.'

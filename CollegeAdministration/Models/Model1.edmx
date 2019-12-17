@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Training_12DecMumbaiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="courseId" />
+          </Key>
+          <Property Name="courseId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseName" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="departmentId" />
+          </Key>
+          <Property Name="departmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="departmentName" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="facultyName" Type="varchar" MaxLength="20" />
+          <Property Name="emailId" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+          <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="address" Type="varchar" MaxLength="30" />
+          <Property Name="experience" Type="float" />
+          <Property Name="courseId" Type="int" Nullable="false" />
+          <Property Name="departmentId" Type="int" Nullable="false" />
+          <Property Name="attendance" Type="float" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="studentId" />
+          </Key>
+          <Property Name="studentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentName" Type="varchar" MaxLength="20" />
+          <Property Name="emailId" Type="varchar" MaxLength="50" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="13" />
+          <Property Name="password" Type="varchar" MaxLength="15" />
+          <Property Name="address" Type="varchar" MaxLength="30" />
+          <Property Name="courseId" Type="int" Nullable="false" />
+          <Property Name="departmentId" Type="int" Nullable="false" />
+          <Property Name="gender" Type="varchar" MaxLength="10" />
+          <Property Name="attendance" Type="float" />
+          <Property Name="academicYear" Type="date" />
+          <Property Name="percentage" Type="float" />
+        </EntityType>
+        <Association Name="FK__Staff__courseId__0BFC99BF">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="courseId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__departmen__0CF0BDF8">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__courseI__045B77F7">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="courseId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__departm__054F9C30">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Training_12DecMumbaiModelStoreContainer">
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="college" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="college" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="college" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="college" store:Type="Tables" />
+          <AssociationSet Name="FK__Staff__courseId__0BFC99BF" Association="Self.FK__Staff__courseId__0BFC99BF">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__departmen__0CF0BDF8" Association="Self.FK__Staff__departmen__0CF0BDF8">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__courseI__045B77F7" Association="Self.FK__Student__courseI__045B77F7">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__departm__054F9C30" Association="Self.FK__Student__departm__054F9C30">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Training_12DecMumbaiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="courseId" />
+          </Key>
+          <Property Name="courseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__courseId__0BFC99BF" FromRole="Course" ToRole="Staff" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__courseI__045B77F7" FromRole="Course" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="departmentId" />
+          </Key>
+          <Property Name="departmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="departmentName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__departmen__0CF0BDF8" FromRole="Department" ToRole="Staff" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__departm__054F9C30" FromRole="Department" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="facultyName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="experience" Type="Double" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <Property Name="departmentId" Type="Int32" Nullable="false" />
+          <Property Name="attendance" Type="Double" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Staff__courseId__0BFC99BF" FromRole="Staff" ToRole="Course" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Staff__departmen__0CF0BDF8" FromRole="Staff" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="studentId" />
+          </Key>
+          <Property Name="studentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="emailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="courseId" Type="Int32" Nullable="false" />
+          <Property Name="departmentId" Type="Int32" Nullable="false" />
+          <Property Name="gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="attendance" Type="Double" />
+          <Property Name="academicYear" Type="DateTime" Precision="0" />
+          <Property Name="percentage" Type="Double" />
+          <NavigationProperty Name="Course" Relationship="Self.FK__Student__courseI__045B77F7" FromRole="Student" ToRole="Course" />
+          <NavigationProperty Name="Department" Relationship="Self.FK__Student__departm__054F9C30" FromRole="Student" ToRole="Department" />
+        </EntityType>
+        <Association Name="FK__Staff__courseId__0BFC99BF">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="courseId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__courseI__045B77F7">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="courseId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="courseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__departmen__0CF0BDF8">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__departm__054F9C30">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Training_12DecMumbaiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <AssociationSet Name="FK__Staff__courseId__0BFC99BF" Association="Self.FK__Staff__courseId__0BFC99BF">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__courseI__045B77F7" Association="Self.FK__Student__courseI__045B77F7">
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__departmen__0CF0BDF8" Association="Self.FK__Staff__departmen__0CF0BDF8">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__departm__054F9C30" Association="Self.FK__Student__departm__054F9C30">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Training_12DecMumbaiModelStoreContainer" CdmEntityContainer="Training_12DecMumbaiEntities">
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="Training_12DecMumbaiModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="courseName" ColumnName="courseName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="Training_12DecMumbaiModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="departmentName" ColumnName="departmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="Training_12DecMumbaiModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="staffId" ColumnName="staffId" />
+                <ScalarProperty Name="facultyName" ColumnName="facultyName" />
+                <ScalarProperty Name="emailId" ColumnName="emailId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="attendance" ColumnName="attendance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="Training_12DecMumbaiModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="studentId" ColumnName="studentId" />
+                <ScalarProperty Name="studentName" ColumnName="studentName" />
+                <ScalarProperty Name="emailId" ColumnName="emailId" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="attendance" ColumnName="attendance" />
+                <ScalarProperty Name="academicYear" ColumnName="academicYear" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
