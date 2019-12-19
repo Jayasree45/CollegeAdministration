@@ -139,7 +139,7 @@ namespace CollegeAdministration.Controllers
         }
         [Authorize(Roles = "Staff,Admin")]
         [HttpPost, ActionName("StaffProfilePage")]
-
+        [Authorize(Roles = "Staff,Admin")]
         public ActionResult StaffProfilePage([Bind(Include = "staffId,facultyName,emailId,password,gender,address,experience,courseId,departmentId,attendance")] Staff staff)
         {
 
@@ -147,7 +147,7 @@ namespace CollegeAdministration.Controllers
             {
                 db.Entry(staff).State = EntityState.Modified;
                 db.SaveChanges();
-                Session["userStudent"] = staff;
+                Session["userStaff"] = staff;
                 return RedirectToAction("StaffHome");
             }
             ViewBag.courseId = new SelectList(db.Courses, "courseId", "courseName", staff.courseId);
@@ -162,12 +162,44 @@ namespace CollegeAdministration.Controllers
         public ActionResult StaffsStudentAttendancePage()
         {
             Staff staff = (Staff)Session["userStaff"];
-
-            //List<Student> studentList = db.Students.Where(db);
-            return View(/*staff*/);
+            var ListStudentAttendance = (from q in db.Students where staff.courseId == q.courseId select q).ToList();
+            List<Student> studentList = (List<Student>)ListStudentAttendance;
+            return View(studentList);
         }
 
-        
+        [Authorize(Roles = "Staff,Admin")]
+        public ActionResult EditStudentAttendance(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Student student = db.Students.Find(id);
+            if (student == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.courseId = new SelectList(db.Courses, "courseId", "courseName", student.courseId);
+            ViewBag.departmentId = new SelectList(db.Departments, "departmentId", "departmentName", student.departmentId);
+            return View(student);
+        }
+        [Authorize(Roles = "Admin,Staff")]
+        // POST: Staffs/EditStudentAttendance/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditStudentAttendance([Bind(Include = "studentId,courseId,departmentId,attendance,percentage")] Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(student).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("StaffHome");
+            }
+            ViewBag.courseId = new SelectList(db.Courses, "courseId", "courseName", student.courseId);
+            ViewBag.departmentId = new SelectList(db.Departments, "departmentId", "departmentName", student.departmentId);
+            return View(student);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

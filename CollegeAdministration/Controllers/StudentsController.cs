@@ -143,7 +143,7 @@ namespace CollegeAdministration.Controllers
         [Authorize(Roles = "Student,Admin")]
         [HttpPost, ActionName("StudentProfilePage")]
 
-        public ActionResult StudentProfilePage([Bind(Include = "studentId,studentName,emailId,phoneNumber,password,address,courseId,departmentId,gender,attendance,academicYear,percentage")] Student student)
+        public ActionResult StudentProfilePage([Bind(Include = "studentId,studentName,emailId,phoneNumber,password,address,courseId,departmentId,gender")] Student student)
         {
 
             if (ModelState.IsValid)

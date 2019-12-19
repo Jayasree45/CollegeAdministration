@@ -5,7 +5,11 @@
 }
 
 <h2>StaffsStudentAttendancePage</h2>
+@Html.BeginForm()
+{
 
+
+}
 <table class="table">
     <tr>
         <th>
@@ -25,3 +29,29 @@
         </th>
         <th></th>
     </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.studentName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.attendance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.percentage)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Course.courseName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Department.departmentName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "EditStudentAttendance", new { id = item.studentId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.studentId }) |
+    </td>
+</tr>
+
+    }
+    </table>

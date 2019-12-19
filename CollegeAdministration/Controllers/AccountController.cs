@@ -112,7 +112,7 @@ namespace CollegeAdministration.Controllers
                         }
                         //var staffSession = user.Staffs.Find(user12.Email);
                         Session["userStaff"] = st;
-                        return RedirectToAction("StaffHomePage", "Staffs");
+                        return RedirectToAction("StaffHome", "Staffs");
                     }
                     else
                     if (UserManager.IsInRole(user1.Id, "Student"))

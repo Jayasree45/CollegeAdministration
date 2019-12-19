@@ -318,6 +318,7 @@
     <Content Include="Views\Staffs\StaffHome.cshtml" />
     <Content Include="Views\Staffs\StaffProfilePage.cshtml" />
     <Content Include="Views\Staffs\StaffsStudentAttendancePage.cshtml" />
+    <Content Include="Views\Staffs\EditStudentAttendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
