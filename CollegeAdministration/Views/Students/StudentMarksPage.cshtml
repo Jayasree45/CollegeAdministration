@@ -1,0 +1,13 @@
+﻿@model CollegeAdministration.Models.Student
+@{
+    ViewBag.Title = "StudentMarksPage";
+    Layout = "~/Views/Shared/_StudentLayoutPage1.cshtml";
+}
+
+
+<div>
+    <br /><br /><br /><br />
+    Hello @Html.DisplayFor(model => model.studentName) your
+    @Html.DisplayNameFor(model => model.percentage) is
+    @Html.DisplayFor(model => model.percentage) %.
+</div>

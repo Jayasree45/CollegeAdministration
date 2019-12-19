@@ -1,0 +1,14 @@
+﻿@model CollegeAdministration.Models.Student
+@{
+    ViewBag.Title = "StudentAttendancePage";
+    Layout = "~/Views/Shared/_StudentLayoutPage1.cshtml";
+}
+
+
+<div>
+    <br /><br /><br /><br />
+    Hello @Html.DisplayFor(model => model.studentName) your 
+    @Html.DisplayNameFor(model => model.attendance) is
+    @Html.DisplayFor(model => model.attendance)%.
+</div>
+

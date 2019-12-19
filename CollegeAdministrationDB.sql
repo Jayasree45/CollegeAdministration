@@ -17,6 +17,9 @@ academicYear date,
 percentage float
 )
 
+ALTER TABLE college.Student
+add constraint Stu_attendance DEFAULT 100 for attendance;
+
 alter table college.Student add Constraint stu_Email Unique (emailId)
 
 insert into college.Student (studentName,emailId,courseId,departmentId,gender)
@@ -43,6 +46,7 @@ values('Staff', 'Staff@gmail.com','1','1','Male')
 select * from college.Staff
 
 
+select * from college.Student
 --Cousre Table---
 create table college.Course(
 courseId int identity primary key ,

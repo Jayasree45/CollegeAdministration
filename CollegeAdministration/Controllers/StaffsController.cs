@@ -10,7 +10,7 @@ using CollegeAdministration.Models;
 
 namespace CollegeAdministration.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    
     public class StaffsController : Controller
     {
         private Training_12DecMumbaiEntities db = new Training_12DecMumbaiEntities();
@@ -21,7 +21,7 @@ namespace CollegeAdministration.Controllers
             var staffs = db.Staffs.Include(s => s.Course).Include(s => s.Department);
             return View(staffs.ToList());
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Staffs/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,7 +36,7 @@ namespace CollegeAdministration.Controllers
             }
             return View(staff);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Staffs/Create
         public ActionResult Create()
         {
@@ -44,7 +44,7 @@ namespace CollegeAdministration.Controllers
             ViewBag.departmentId = new SelectList(db.Departments, "departmentId", "departmentName");
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Staffs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -63,7 +63,7 @@ namespace CollegeAdministration.Controllers
             ViewBag.departmentId = new SelectList(db.Departments, "departmentId", "departmentName", staff.departmentId);
             return View(staff);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Staffs/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -80,7 +80,7 @@ namespace CollegeAdministration.Controllers
             ViewBag.departmentId = new SelectList(db.Departments, "departmentId", "departmentName", staff.departmentId);
             return View(staff);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Staffs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -98,7 +98,7 @@ namespace CollegeAdministration.Controllers
             ViewBag.departmentId = new SelectList(db.Departments, "departmentId", "departmentName", staff.departmentId);
             return View(staff);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Staffs/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -113,7 +113,7 @@ namespace CollegeAdministration.Controllers
             }
             return View(staff);
         }
-
+        [Authorize(Roles = "Admin")]
         // POST: Staffs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -124,13 +124,50 @@ namespace CollegeAdministration.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        [Authorize(Roles ="Staff")]
-        public ActionResult StaffHomePage()
+        [Authorize(Roles = "Staff,Admin")]
+        public ActionResult StaffHome()
         {
             Staff staff = (Staff)Session["userStaff"];
             return View(staff);
         }
 
+        [Authorize(Roles = "Staff,Admin")]
+        public ActionResult StaffProfilePage()
+        {
+            Staff staff = (Staff)Session["userStaff"];
+            return View(staff);
+        }
+        [Authorize(Roles = "Staff,Admin")]
+        [HttpPost, ActionName("StaffProfilePage")]
+
+        public ActionResult StaffProfilePage([Bind(Include = "staffId,facultyName,emailId,password,gender,address,experience,courseId,departmentId,attendance")] Staff staff)
+        {
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(staff).State = EntityState.Modified;
+                db.SaveChanges();
+                Session["userStudent"] = staff;
+                return RedirectToAction("StaffHome");
+            }
+            ViewBag.courseId = new SelectList(db.Courses, "courseId", "courseName", staff.courseId);
+            ViewBag.departmentId = new SelectList(db.Departments, "departmentId", "departmentName", staff.departmentId);
+            return View(staff);
+        }
+
+        //dfhnvgdfhbvifdmhbgjgbjggggggggjgfmijnbgjimbj  nnnnnnnnnijifnbgjindfihbuirnhbtu huir
+        //i am trying to retrive student list based up on the couse id of both student and sttaff
+
+        [Authorize(Roles = "Staff,Admin")]
+        public ActionResult StaffsStudentAttendancePage()
+        {
+            Staff staff = (Staff)Session["userStaff"];
+
+            //List<Student> studentList = db.Students.Where(db);
+            return View(/*staff*/);
+        }
+
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CollegeAdministration.Models.Student>
+@{
+    ViewBag.Title = "StaffsStudentAttendancePage";
+    Layout = "~/Views/Shared/_StaffLayoutPage1.cshtml";
+}
+
+<h2>StaffsStudentAttendancePage</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.studentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.attendance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.percentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.courseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.departmentName)
+        </th>
+        <th></th>
+    </tr>

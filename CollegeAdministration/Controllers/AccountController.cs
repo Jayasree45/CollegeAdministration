@@ -106,6 +106,10 @@ namespace CollegeAdministration.Controllers
                     {
                         var staffSession = from p in user.Staffs where p.emailId == user12.Email select p;
                         Staff st = staffSession.FirstOrDefault();
+                        if(st.password == null)
+                        {
+                            st.password = model.Password;
+                        }
                         //var staffSession = user.Staffs.Find(user12.Email);
                         Session["userStaff"] = st;
                         return RedirectToAction("StaffHomePage", "Staffs");
@@ -115,12 +119,16 @@ namespace CollegeAdministration.Controllers
                     {
                         var studentSession = from p in user.Students where p.emailId == user12.Email select p;
                         Student Stu = studentSession.FirstOrDefault();
+                        if(Stu.password == null)
+                        {
+                            Stu.password = model.Password;
+                        } 
                         Session["userStudent"] = Stu;
                         
                         //Student student;/*= System.Data.Entity.DbSet<Student>*/
                         //userSessionobj = model.Email.Equals(student.emailId);
                         //user.Student.
-                        return RedirectToAction("StudentHomePage", "Students");
+                        return RedirectToAction("StudentHome", "Students");
                     }
                    
                     return View(model);

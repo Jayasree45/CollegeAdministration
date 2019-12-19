@@ -1,0 +1,98 @@
+﻿@model CollegeAdministration.Models.Student
+
+@{
+    ViewBag.Title = "StudentProfilePage";
+    Layout = "~/Views/Shared/_StudentLayoutPage1.cshtml";
+}
+
+<h2>Hello @Html.DisplayFor(model => model.studentName)</h2>
+@*<div>
+    <dt>@Html.DisplayNameFor(model => model.studentId)</dt>
+    <dd>@Html.DisplayFor(model => model.studentId)</dd>
+    <dt>@Html.DisplayNameFor(model => model.studentName)</dt>
+    <dd>@Html.DisplayFor(model => model.studentName)</dd>
+    <dt>@Html.DisplayNameFor(model => model.emailId)</dt>
+    <dt>@Html.DisplayFor(model => model.emailId)</dt>
+    <dt>@Html.DisplayNameFor(model => model.phoneNumber)</dt>
+    <dt>@Html.DisplayFor(model => model.phoneNumber)</dt>
+    <dt>@Html.DisplayNameFor(model => model.gender)</dt>
+    <dd>@Html.DisplayFor(Model => Model.gender)</dd>
+    <dt>@Html.DisplayNameFor(model => model.Department)</dt>
+    <dd>@Html.DisplayFor(model => model.Department)</dd>
+    <dt>@Html.DisplayNameFor(model => model.Course)</dt>
+    <dt>@Html.DisplayFor(model => model.Course)</dt>
+    <dt>@Html.DisplayNameFor(model => model.address)</dt>
+    <dt>@Html.DisplayFor(model => model.address)</dt>
+    <dt>@Html.DisplayNameFor(model => model.academicYear)</dt>
+    <dt>@Html.DisplayFor(model => model.academicYear)</dt>
+</div>*@
+@using (Html.BeginForm("StudentProfilePage","Students"))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Student</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.studentId)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.courseId)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.departmentId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.studentName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.studentName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.studentName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.emailId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.emailId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.emailId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.phoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.attendance, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.attendance, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.attendance, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

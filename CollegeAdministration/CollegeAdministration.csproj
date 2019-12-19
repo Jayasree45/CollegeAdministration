@@ -309,9 +309,15 @@
     <Content Include="Views\Staffs\Edit.cshtml" />
     <Content Include="Views\Staffs\Index.cshtml" />
     <Content Include="Views\Role\AdminHomePage.cshtml" />
-    <Content Include="Views\Staffs\StaffHomePage.cshtml" />
-    <Content Include="Views\Students\StudentHomePage.cshtml" />
     <Content Include="Views\Shared\_StudentLayoutPage1.cshtml" />
+    <Content Include="Views\Students\StudentProfilePage.cshtml" />
+    <Content Include="Views\Students\StudentHome.cshtml" />
+    <Content Include="Views\Students\StudentAttendancePage.cshtml" />
+    <Content Include="Views\Students\StudentMarksPage.cshtml" />
+    <Content Include="Views\Shared\_StaffLayoutPage1.cshtml" />
+    <Content Include="Views\Staffs\StaffHome.cshtml" />
+    <Content Include="Views\Staffs\StaffProfilePage.cshtml" />
+    <Content Include="Views\Staffs\StaffsStudentAttendancePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
